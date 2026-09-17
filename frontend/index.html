@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Skin Disease Detection — Federated Learning</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">🩺 SkinFL <span>Federated Skin Disease Detection</span></div>
+  <nav class="auth-nav">
+    <span id="userGreeting" class="hidden"></span>
+    <button id="loginBtn" class="ghost-btn">Log in</button>
+    <button id="registerBtn" class="ghost-btn">Sign up</button>
+    <button id="logoutBtn" class="ghost-btn hidden">Log out</button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Predict skin conditions — trained without your data ever leaving the hospital.</h1>
+    <p>This demo uses <strong>Federated Learning</strong>: the model is trained across multiple simulated
+    hospital clients, and only model weight updates (never raw images) are shared with the central server.</p>
+  </section>
+
+  <section class="card">
+    <h2>1. Upload a skin image</h2>
+    <form id="predictForm">
+      <input type="file" id="imageInput" accept="image/*" required />
+      <div id="preview" class="preview hidden"><img id="previewImg" alt="preview" /></div>
+      <button type="submit" class="primary-btn">Analyze Image</button>
+    </form>
+    <div id="predictResult" class="result hidden"></div>
+  </section>
+
+  <section class="card">
+    <h2>2. General diet guidance (overweight / underweight)</h2>
+    <form id="dietForm" class="inline-form">
+      <label>Height (cm) <input type="number" id="heightInput" min="50" max="260" required /></label>
+      <label>Weight (kg) <input type="number" id="weightInput" min="10" max="400" required /></label>
+      <button type="submit" class="primary-btn">Get Suggestion</button>
+    </form>
+    <div id="dietResult" class="result hidden"></div>
+  </section>
+
+  <section class="card">
+    <h2>3. Your prediction history</h2>
+    <button id="loadHistoryBtn" class="ghost-btn">Refresh history</button>
+    <div id="historyList" class="history-list"></div>
+  </section>
+</main>
+
+<!-- Auth modal -->
+<div id="authModal" class="modal hidden">
+  <div class="modal-box">
+    <button class="close-btn" id="closeModalBtn">&times;</button>
+    <h3 id="authTitle">Log in</h3>
+    <form id="authForm">
+      <div id="nameField" class="hidden"><input type="text" id="nameInput" placeholder="Full name" /></div>
+      <input type="email" id="emailInput" placeholder="Email" required />
+      <input type="password" id="passwordInput" placeholder="Password" required />
+      <button type="submit" class="primary-btn full-width">Continue</button>
+    </form>
+    <p id="authError" class="error hidden"></p>
+  </div>
+</div>
+
+<footer>
+  <p>Academic mini-project demo. Predictions are not a medical diagnosis.</p>
+</footer>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
